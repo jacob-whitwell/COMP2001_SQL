@@ -36,8 +36,9 @@ CREATE TABLE CW1.Treasure (
 )
 
 CREATE TABLE CW1.Found (
-    GeocacheID INT NOT NULL,
     PlayerID INT IDENTITY(1, 1) NOT NULL,
+    GeocacheID INT NOT NULL,
 
-    CONSTRAINT pk_found PRIMARY KEY (GeocacheID, PlayerID)
+    CONSTRAINT pk_found PRIMARY KEY (PlayerID)
+    CONSTRAINT fk_found_cacheID FOREIGN KEY (GeocacheID) REFERENCES CW1.Geocache(GeocacheID)
 )
