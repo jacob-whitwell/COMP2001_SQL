@@ -55,3 +55,8 @@ VALUES (123, 'In the town of Plymouth there is a cache', 'In-Play', 'Traditional
 (234, 'Beside Tower Bridge there is a small cache, covered by a rock', 'In-Play', 'Traditional Geocache'),
 (1234, 'Inside the minigolf course there are many pirates and water hazards. Here you would find what you might be looking for...', 'Maintenance', 'Traditional Geocache')
 
+INSERT INTO CW1.Player(PlayerName)
+VALUES ('Jacob'),
+('Mike'),
+('Kieran')
+
