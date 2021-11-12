@@ -1,7 +1,5 @@
-CREATE SCHEMA CW1
-
 CREATE TABLE CW1.Geocache (
-    -- auto increment each ID for the cache
+    
     GeocacheID INT IDENTITY(1, 1) NOT NULL,
     GeocacheLocation INT NOT NULL, -- using int for dummy data. Geography too complicated at the moment
     GeocacheDescription VARCHAR(255) NOT NULL,
@@ -49,9 +47,3 @@ CREATE TABLE CW1.Player (
     
     CONSTRAINT pk_playerID PRIMARY KEY (PlayerID)
 )
-
-INSERT INTO CW1.Geocache (GeocacheLocation, GeocacheDescription, GeocacheStatus, GeocacheType)
-VALUES (123, 'In the town of Plymouth there is a cache', 'In-Play', 'Traditional Geocache'),
-(234, 'Beside Tower Bridge there is a small cache, covered by a rock', 'In-Play', 'Traditional Geocache'),
-(1234, 'Inside the minigolf course there are many pirates and water hazards. Here you would find what you might be looking for...', 'Maintenance', 'Traditional Geocache')
-
