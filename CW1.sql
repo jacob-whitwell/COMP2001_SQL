@@ -3,7 +3,7 @@ CREATE SCHEMA CW1
 CREATE TABLE CW1.Geocache (
     -- auto increment each ID for the cache
     GeocacheID INT IDENTITY(1, 1) NOT NULL,
-    GeocacheLocation GEOGRAPHY NOT NULL, -- geograpghy datatype allows us to use coordinates
+    GeocacheLocation GEOGRAPHY NOT NULL, -- using int for dummy data. Geography too complicated at the moment
     GeocacheDescription VARCHAR(255) NOT NULL,
     GeocacheStatus VARCHAR(15) NOT NULL,
     GeocacheType VARCHAR(20) NOT NULL,
@@ -39,6 +39,7 @@ CREATE TABLE CW1.Found (
     PlayerID INT IDENTITY(1, 1) NOT NULL,
     GeocacheID INT NOT NULL,
 
-    CONSTRAINT pk_found PRIMARY KEY (PlayerID)
+    CONSTRAINT pk_found PRIMARY KEY (PlayerID),
     CONSTRAINT fk_found_cacheID FOREIGN KEY (GeocacheID) REFERENCES CW1.Geocache(GeocacheID)
 )
+
