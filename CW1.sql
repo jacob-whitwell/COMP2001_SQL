@@ -8,9 +8,7 @@ CREATE TABLE CW1.Geocache (
     GeocacheStatus VARCHAR(15) NOT NULL,
     GeocacheType VARCHAR(20) NOT NULL,
 
-    CONSTRAINT pk_cache PRIMARY KEY (
-        GeocacheID
-    )
+    CONSTRAINT pk_cache PRIMARY KEY (GeocacheID)
 )
 
 CREATE TABLE CW1.Hint (
@@ -19,10 +17,7 @@ CREATE TABLE CW1.Hint (
     GeocacheID INT NOT NULL,
 
 
-    CONSTRAINT pk_hint PRIMARY KEY (
-        GeocacheHintID
-    ),
-
+    CONSTRAINT pk_hint PRIMARY KEY (GeocacheHintID),
     CONSTRAINT fk_hint_cacheID FOREIGN KEY (GeocacheID) REFERENCES CW1.Geocache(GeocacheID)
 )
 
@@ -36,9 +31,11 @@ CREATE TABLE CW1.Treasure (
 )
 
 CREATE TABLE CW1.PlayerGeocache (
-    PlayerID INT IDENTITY(1, 1) NOT NULL,
+    ID INT IDENTITY(1, 1) NOT NULL,
+    PlayerID INT NOT NULL,
     GeocacheID INT NOT NULL,
 
+    CONSTRAINT pk_pg_ID PRIMARY KEY (ID),
     CONSTRAINT fk_found_playerID FOREIGN KEY (PlayerID) REFERENCES CW1.Player(PlayerID),
     CONSTRAINT fk_found_cacheID FOREIGN KEY (GeocacheID) REFERENCES CW1.Geocache(GeocacheID)
 )
@@ -50,13 +47,4 @@ CREATE TABLE CW1.Player (
     CONSTRAINT pk_playerID PRIMARY KEY (PlayerID)
 )
 
-INSERT INTO CW1.Geocache (GeocacheLocation, GeocacheDescription, GeocacheStatus, GeocacheType)
-VALUES (123, 'In the town of Plymouth there is a cache', 'In-Play', 'Traditional Geocache'),
-(234, 'Beside Tower Bridge there is a small cache, covered by a rock', 'In-Play', 'Traditional Geocache'),
-(1234, 'Inside the minigolf course there are many pirates and water hazards. Here you would find what you might be looking for...', 'Maintenance', 'Traditional Geocache')
-
-INSERT INTO CW1.Player(PlayerName)
-VALUES ('Jacob'),
-('Mike'),
-('Kieran')
 
