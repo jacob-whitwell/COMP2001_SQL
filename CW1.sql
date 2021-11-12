@@ -23,7 +23,7 @@ CREATE TABLE CW1.Hint (
         GeocacheHintID
     ),
 
-    CONSTRAINT fk_cacheID FOREIGN KEY (GeocacheID) REFERENCES CW1.Geocache
+    CONSTRAINT fk_hint_cacheID FOREIGN KEY (GeocacheID) REFERENCES CW1.Geocache(GeocacheID)
 )
 
 CREATE TABLE CW1.Treasure (
@@ -32,5 +32,6 @@ CREATE TABLE CW1.Treasure (
     GeocacheID INT NOT NULL,
 
     CONSTRAINT pk_treasure PRIMARY KEY (GeocacheTreasureID),
-    CONSTRAINT fk_treasure_cacheID FOREIGN KEY (GeocacheID) REFERENCES CW1.Geocache
+    CONSTRAINT fk_treasure_cacheID FOREIGN KEY (GeocacheID) REFERENCES CW1.Geocache(GeocacheID)
 )
+
