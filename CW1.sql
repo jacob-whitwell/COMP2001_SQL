@@ -13,3 +13,24 @@ CREATE TABLE CW1.Geocache (
     )
 )
 
+CREATE TABLE CW1.Hint (
+    GeocacheHintID INT IDENTITY(1, 1) NOT NULL,
+    GeocacheHint VARCHAR(255) NOT NULL,
+    GeocacheID INT NOT NULL,
+
+
+    CONSTRAINT pk_hint PRIMARY KEY (
+        GeocacheHintID
+    ),
+
+    CONSTRAINT fk_cacheID FOREIGN KEY (GeocacheID) REFERENCES CW1.Geocache
+)
+
+CREATE TABLE CW1.Treasure (
+    GeocacheTreasureID INT IDENTITY(1, 1) NOT NULL,
+    GeocacheTreasureItem VARCHAR(255) NOT NULL,
+    GeocacheID INT NOT NULL,
+
+    CONSTRAINT pk_treasure PRIMARY KEY (GeocacheTreasureID),
+    CONSTRAINT fk_treasure_cacheID FOREIGN KEY (GeocacheID) REFERENCES CW1.Geocache
+)
