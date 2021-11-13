@@ -13,7 +13,6 @@ CREATE TABLE CW1.Geocache (
 )
 
 CREATE TABLE CW1.Hint (
-    GeocacheHintID INT IDENTITY(1, 1) NOT NULL,
     GeocacheHint VARCHAR(255) NOT NULL,
     GeocacheID INT NOT NULL,
 
