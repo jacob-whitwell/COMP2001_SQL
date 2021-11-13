@@ -7,3 +7,5 @@ WHERE CW1.Geocache.GeocacheID = CW1.Hint.GeocacheID
 
 
 SELECT * FROM CW1.ShowHints
+
+SELECT * FROM CW1.Geocache
