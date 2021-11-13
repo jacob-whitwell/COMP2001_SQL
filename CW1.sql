@@ -1,5 +1,20 @@
 CREATE SCHEMA CW1
 
+
+CREATE TABLE CW1.Test (
+    GeocacheName VARCHAR(30) NOT NULL,
+    GeocacheLocation INT NOT NULL,
+    GeocacheDescription VARCHAR(255) NOT NULL,
+    GeocacheStatus VARCHAR(15) NOT NULL,
+    GeocacheType VARCHAR(30) NOT NULL
+)
+
+
+
+
+
+
+
 CREATE TABLE CW1.Geocache (
     -- auto increment each ID for the cache
     GeocacheID INT IDENTITY(1, 1) NOT NULL,
@@ -12,6 +27,9 @@ CREATE TABLE CW1.Geocache (
     CONSTRAINT pk_cache PRIMARY KEY (GeocacheID)
 )
 
+CREATE TABLE CW1.Test (
+    Name VARCHAR(255)
+)
 
 CREATE TABLE CW1.Hint (
     ID INT IDENTITY(1, 1) NOT NULL,

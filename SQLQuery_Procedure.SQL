@@ -1,36 +1,48 @@
-CREATE PROCEDURE CW1.AddGeocache (
-    @GeocacheName as VARCHAR(30),
-    @GeocacheLocation AS INT, 
-    @GeocacheDescription VARCHAR(255),
-    @GeocacheStatus VARCHAR (15),
-    @GeocacheType VARCHAR(30) 
+--DROP PROCEDURE CW1.TestCreateGeocache
+CREATE PROCEDURE CW1.CreateGeocache(
+    @Name AS VARCHAR(30),
+    @Location AS INT,
+    @Description AS VARCHAR(255),
+    @Status AS VARCHAR(15),
+    @Type AS VARCHAR(30),
+
+    @responseMessage NVARCHAR(250) OUTPUT
 )
 AS
 BEGIN
     BEGIN TRANSACTION
-
+        PRINT 'Test'
         BEGIN TRY
-            DECLARE @Error NVARCHAR(MAX);
-            SELECT @GeocacheLocation = GeocacheLocation FROM CW1.Geocache
-            WHERE GeocacheLocation = @GeocacheLocation
+            DECLARE @Error NVARCHAR(Max);            
+            DECLARE @LocationTaken INT;
 
-            IF @GeocacheLocation IS NULL
-            BEGIN 
-                INSERT INTO CW1.Geocache (GeocacheName, GeocacheLocation, GeocacheDescription, GeocacheStatus, GeocacheType)
-                VALUES (@GeocacheName, @GeocacheLocation, @GeocacheDescription, @GeocacheStatus, @GeocacheType)
+            SELECT @LocationTaken = GeocacheLocation FROM CW1.Geocache
+            WHERE GeocacheLocation = @Location
+
+            IF @LocationTaken IS NULL
+            BEGIN
+                INSERT INTO CW1.Geocache(GeocacheName, GeocacheLocation, GeocacheDescription, GeocacheStatus, GeocacheType)
+                VALUES (@Name, @Location, @Description, @Status, @Type)
             END
+            ELSE
+                SET @responseMessage = ' Location exists :' + @LocationTaken;
 
             IF @@TRANCOUNT > 0 COMMIT;
         END TRY
-        BEGIN CATCH 
-            SET @Error = @Error+'Encountered an error: Location could not be set.'
+        BEGIN CATCH
+            SET @Error = @Error+':An error was encountered : NewName could not be created';
             IF @@TRANCOUNT > 0
-                ROLLBACK TRANSACTION
+                ROLLBACK TRANSACTION;
             RAISERROR(@Error, 1, 0);
-        END CATCH;
+        END CATCH
+    
 END;
 
 
-SELECT * FROM CW1.Geocache
+DECLARE @message varchar(250);
+EXEC CW1.CreateGeocache 'Testname', 2, 'Test Description', 'In-Play', 'Default', @message OUTPUT
+SELECT @message
 
-EXEC CW1.AddGeocache 'Prodedure', 222, 'This is a new description', 'In-play', 'Default Geocache'
+SELECT * FROM CW1.Test
+
+-- COULDN'T FIGURE OUT HOW TO INPUT CORRECTLY WITH STORED PROCEDURE
