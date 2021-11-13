@@ -1,5 +1,9 @@
 CREATE PROCEDURE CW1.AddGeocache (
-    @Location AS INT 
+    @GeocacheName as VARCHAR(30),
+    @GeocacheLocation AS INT, 
+    @GeocacheDescription VARCHAR(255),
+    @GeocacheStatus VARCHAR (15),
+    @GeocacheType VARCHAR(30) 
 )
 AS
 BEGIN
@@ -7,14 +11,13 @@ BEGIN
 
         BEGIN TRY
             DECLARE @Error NVARCHAR(MAX);
+            SELECT @GeocacheLocation = GeocacheLocation FROM CW1.Geocache
+            WHERE GeocacheLocation = @GeocacheLocation
 
-            SELECT @Location = Location FROM CW1.Geocache
-            WHERE Location = @Location
-
-            IF @Location IS NULL
+            IF @GeocacheLocation IS NULL
             BEGIN 
-                INSERT INTO CW1.Geocache (Location)
-                VALUES (@Location)
+                INSERT INTO CW1.Geocache (GeocacheName, GeocacheLocation, GeocacheDescription, GeocacheStatus, GeocacheType)
+                VALUES (@GeocacheName, @GeocacheLocation, @GeocacheDescription, @GeocacheStatus, @GeocacheType)
             END
 
             IF @@TRANCOUNT > 0 COMMIT;
@@ -26,3 +29,8 @@ BEGIN
             RAISERROR(@Error, 1, 0);
         END CATCH;
 END;
+
+
+SELECT * FROM CW1.Geocache
+
+EXEC CW1.AddGeocache 'Prodedure', 222, 'This is a new description', 'In-play', 'Default Geocache'
