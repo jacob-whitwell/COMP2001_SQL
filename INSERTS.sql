@@ -1,6 +1,6 @@
 --DROP TABLE CW1.Hint, CW1.PlayerGeocache, CW1.Player, CW1.Treasure, CW1.Geocache
 
-SELECT * FROM CW1.Geocache
+SELECT GeocacheLocation FROM CW1.Geocache
 SELECT * FROM cw1.Hint 
 SELECT * FROM CW1.Player
 SELECT * FROM CW1.PlayerGeocache
@@ -33,7 +33,19 @@ VALUES ('Lamppost Cache', 3321, 'This is the first cache I made and its in a lam
 
 INSERT INTO CW1.Hint (GeocacheHint, GeocacheID)
 VALUES ('Look in the tree', (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 2)),
-('This is a geocache hint.', (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID= 1)),
+('This is a geocache hint.', (  )),
 ('Look underneath the metal fence', (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 3)),
 ('There you will find a magnetic nut', (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 3))
 
+
+
+DECLARE @message varchar(250);
+DECLARE @newID INT;
+EXEC CW1.CreateGeocache 'New test cache', 123456, 'Testing if hint works', 'In-Play', 'Default', 'This is a test hint', @newID OUTPUT, @message OUTPUT
+SELECT @message
+
+DELETE FROM CW1.Hint
+WHERE GeocacheHint = 'This is a test hint'
+
+DELETE FROM CW1.Geocache
+WHERE GeocacheName = 'New test cache'
