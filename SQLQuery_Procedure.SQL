@@ -46,18 +46,11 @@ END;
 
 DECLARE @message varchar(250);
 DECLARE @newID INT;
-EXEC CW1.CreateGeocache 'New test cache', 123456, 'Testing if hint works', 'In-Play', 'Default', 'This is a test hint', @newID OUTPUT, @message OUTPUT
+EXEC CW1.CreateGeocache 'My first cache', 123456, 'This is a test description of the new cache', 'In-Play', 'Default', 'This is a test hint', @newID OUTPUT, @message OUTPUT
 SELECT @message
-
-DELETE FROM CW1.Hint
-WHERE GeocacheHint = 'This is a test hint'
-
-DELETE FROM CW1.Geocache
-WHERE GeocacheName = 'New test cache'
 
 SELECT * FROM CW1.Geocache
 SELECT * FROM CW1.PlayerGeocache
 SELECT * FROM CW1.Hint
 
 
--- COULDN'T FIGURE OUT HOW TO INPUT CORRECTLY WITH STORED PROCEDURE

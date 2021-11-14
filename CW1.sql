@@ -1,19 +1,7 @@
 CREATE SCHEMA CW1
 
-
-CREATE TABLE CW1.Test (
-    GeocacheName VARCHAR(30) NOT NULL,
-    GeocacheLocation INT NOT NULL,
-    GeocacheDescription VARCHAR(255) NOT NULL,
-    GeocacheStatus VARCHAR(15) NOT NULL,
-    GeocacheType VARCHAR(30) NOT NULL
-)
-
-
-
-
-
-
+ALTER TABLE CW1.Geocache
+DROP COLUMN TimesFound
 
 CREATE TABLE CW1.Geocache (
     -- auto increment each ID for the cache
@@ -23,12 +11,9 @@ CREATE TABLE CW1.Geocache (
     GeocacheDescription VARCHAR(255) NOT NULL,
     GeocacheStatus VARCHAR(15) NOT NULL,
     GeocacheType VARCHAR(30) NOT NULL,
+    
 
     CONSTRAINT pk_cache PRIMARY KEY (GeocacheID)
-)
-
-CREATE TABLE CW1.Test (
-    Name VARCHAR(255)
 )
 
 CREATE TABLE CW1.Hint (
@@ -52,7 +37,6 @@ CREATE TABLE CW1.Treasure (
 CREATE TABLE CW1.Player (
     PlayerID INT IDENTITY(1, 1) NOT NULL,
     PlayerName VARCHAR(20) NOT NULL,
-    
     CONSTRAINT pk_playerID PRIMARY KEY (PlayerID)
 )
 
