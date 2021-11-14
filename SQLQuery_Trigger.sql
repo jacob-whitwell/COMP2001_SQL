@@ -1,19 +1,20 @@
-CREATE TRIGGER CW1.CacheFound ON CW1.Geocache
+CREATE TRIGGER CW1.CacheFound ON CW1.PlayerGeocache
 AFTER INSERT, UPDATE
 AS
 BEGIN 
     DECLARE @CacheID int;
-    DECLARE @TimesFound int;
+    
 
-    SELECT @TimesFound = COUNT(GeocacheID)
-    FROM CW1.Geocache
-    WHERE @CacheID = GeocacheID
+    SELECT @CacheID = GeocacheID
+    FROM CW1.PlayerGeocache as inserted
+    WHERE GeocacheID = inserted.GeocacheID
 
-    print 'Times found: '+@TimesFound
+    print 'CacheID: '
+    print @CacheID
 END
 GO
 
-ALTER TABLE CW1.Geocache
+ALTER TABLE CW1.PlayerGeocache
 ENABLE TRIGGER CacheFound
 GO
 
