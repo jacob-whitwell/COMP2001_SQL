@@ -7,15 +7,15 @@ drop constraint fk_cache_times_found
 ALTER TABLE cw1.TimesFound
 drop constraint fk_times_found_geocacheID
 
-
 SELECT * FROM CW1.Geocache
-SELECT * FROM cw1.Hint 
 SELECT * FROM CW1.Player
 SELECT * FROM CW1.PlayerGeocache
 SELECT * FROM CW1.Treasure
 SELECT * FROM CW1.TimesFound
 
-
+UPDATE CW1.PlayerGeocache
+SET TimesFound = 20
+WHERE GeocacheID = 12
 
 
 INSERT INTO CW1.Geocache(GeocacheName, GeocacheLocation, GeocacheDescription, GeocacheStatus, GeocacheType)
@@ -31,10 +31,31 @@ VALUES ('Jacob'),
 ('GeocacheFinder92')
 
 
+DELETE FROM CW1.Playergeocache 
 
 
 INSERT INTO CW1.PlayerGeocache(PlayerID, GeoCacheID)
-VALUES ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 1), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 12))
+VALUES ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 1), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 1), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 2), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 3), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 4), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 5), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 7), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 8), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 9), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 10), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 11), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 12), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 13), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 14), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 15), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 16), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 17), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 18), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 19), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 20), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5))
+
 
 
 INSERT INTO CW1.Treasure(GeocacheTreasureItem, GeocacheID)
@@ -49,9 +70,9 @@ VALUES ('Look in the tree', (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WH
 ('Look underneath the metal fence', (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
 ('There you will find a magnetic nut', (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 6))
 
-
+SELECT * FROM CW1.Geocache
 
 DECLARE @message varchar(250);
 DECLARE @newID INT;
-EXEC CW1.CreateGeocache 'New test cache', 1234123577, 'Testing if hint works', 'In-Play', 'Default', 'This is a test hint', @newID OUTPUT, @message OUTPUT
+EXEC CW1.CreateGeocache 'New test cache', 413, 'Testing if hint works', 'In-Play', 'Default', 'This is a test hint', @newID OUTPUT, @message OUTPUT
 SELECT @message
