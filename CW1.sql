@@ -41,7 +41,6 @@ CREATE TABLE CW1.Player (
 )
 
 CREATE TABLE CW1.PlayerGeocache (
-    ID INT IDENTITY(1, 1) NOT NULL,
     PlayerID INT NOT NULL,
     GeocacheID INT NOT NULL,
 
