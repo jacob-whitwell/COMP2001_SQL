@@ -1,21 +1,11 @@
 DROP TABLE CW1.Hint, CW1.PlayerGeocache, CW1.Player, CW1.Treasure, CW1.Geocache
 DROP TABLE CW1.TimesFound
 
-ALTER TABLE cw1.geocache
-drop constraint fk_cache_times_found
-
-ALTER TABLE cw1.TimesFound
-drop constraint fk_times_found_geocacheID
-
 SELECT * FROM CW1.Geocache
 SELECT * FROM CW1.Player
 SELECT * FROM CW1.PlayerGeocache
 SELECT * FROM CW1.Treasure
 SELECT * FROM CW1.TimesFound
-
-UPDATE CW1.PlayerGeocache
-SET TimesFound = 20
-WHERE GeocacheID = 12
 
 
 INSERT INTO CW1.Geocache(GeocacheName, GeocacheLocation, GeocacheDescription, GeocacheStatus, GeocacheType)
@@ -38,7 +28,7 @@ SET TimesFound = 0
 SELECT * FROM CW1.Geocache
 
 INSERT INTO CW1.PlayerGeocache(PlayerID, GeoCacheID)
-VALUES ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 9), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 21)),
+VALUES ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 1), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 21)),
 ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 2), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 21)),
 ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 3), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 21)),
 ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 4), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 21)),

@@ -24,7 +24,6 @@ BEGIN
                 INSERT INTO CW1.Geocache(GeocacheName, GeocacheLocation, GeocacheDescription, GeocacheStatus, GeocacheType)
                 VALUES (@Name, @Location, @Description, @Status, @Type)
                 SET @newID = SCOPE_IDENTITY();
-            
 
                 INSERT INTO CW1.Hint(GeocacheHint, GeocacheID)
                 VALUES (@Hint, (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = @newId))

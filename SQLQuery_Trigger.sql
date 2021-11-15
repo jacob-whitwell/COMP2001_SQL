@@ -4,6 +4,7 @@ AS
 BEGIN 
     DECLARE @CacheID int;
     DECLARE @Count int; 
+    DECLARE @FoundCounter int;
 
 -- ITS GETTING THE LAST ID, SO WE NEED TO MAKE A PROPER WHERE CLAUSE
     
