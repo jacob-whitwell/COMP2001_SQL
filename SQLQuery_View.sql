@@ -1,6 +1,6 @@
 -- View: Obtain a view of the hints for a geocache.
 CREATE VIEW CW1.ShowHints AS
-SELECT CW1.Hint.GeocacheHintID, CW1.Geocache.GeocacheID, CW1.Geocache.GeocacheName, CW1.Hint.GeocacheHint
+SELECT CW1.Geocache.GeocacheName, CW1.Hint.GeocacheHint
 FROM CW1.Geocache, CW1.Hint
 WHERE CW1.Geocache.GeocacheID = CW1.Hint.GeocacheID
 

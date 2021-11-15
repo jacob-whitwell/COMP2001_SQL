@@ -30,17 +30,18 @@ VALUES ('Jacob'),
 ('Destina'),
 ('GeocacheFinder92')
 
-
+SELECT * FROM CW1.PlayerGeocache
 DELETE FROM CW1.Playergeocache 
+
 
 
 INSERT INTO CW1.PlayerGeocache(PlayerID, GeoCacheID)
 VALUES ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 1), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
-((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 1), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
 ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 2), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
-((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 3), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 3), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 4)),
 ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 4), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
 ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 5), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
+((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 6), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
 ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 7), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
 ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 8), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
 ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 9), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
@@ -74,5 +75,5 @@ SELECT * FROM CW1.Geocache
 
 DECLARE @message varchar(250);
 DECLARE @newID INT;
-EXEC CW1.CreateGeocache 'New test cache', 413, 'Testing if hint works', 'In-Play', 'Default', 'This is a test hint', @newID OUTPUT, @message OUTPUT
+EXEC CW1.CreateGeocache 'New test cache', 99, 'Testing if hint works', 'In-Play', 'Default', 'This is a test hint', @newID OUTPUT, @message OUTPUT
 SELECT @message

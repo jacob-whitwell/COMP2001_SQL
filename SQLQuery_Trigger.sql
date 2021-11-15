@@ -3,14 +3,25 @@ AFTER INSERT, UPDATE
 AS
 BEGIN 
     DECLARE @CacheID int;
-    
+    DECLARE @Count int; 
 
-    SELECT @CacheID = GeocacheID
+
+-- ITS GETTING THE LAST ID, SO WE NEED TO MAKE A PROPER WHERE CLAUSE
+    
+    SELECT @CacheID = i.GeocacheID
+    FROM CW1.PlayerGeocache as i, inserted
+    WHERE i.GeocacheID = inserted.GeocacheID
+
+
+    SELECT @Count = COUNT(GeocacheID)
     FROM CW1.PlayerGeocache as inserted
-    WHERE GeocacheID = inserted.GeocacheID
+    WHERE inserted.GeocacheID = GeocacheID
 
     print 'CacheID: '
     print @CacheID
+
+    print'Found: '
+    print @Count    
 END
 GO
 
