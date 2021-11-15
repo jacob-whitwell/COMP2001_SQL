@@ -43,7 +43,4 @@ CREATE TABLE CW1.PlayerGeocache (
     TimesFound INT DEFAULT 0,
 
     CONSTRAINT pk_player_geocache PRIMARY KEY (PlayerID, GeocacheID)
-
-    --CONSTRAINT fk_found_playerID FOREIGN KEY (PlayerID) REFERENCES CW1.Player(PlayerID),
-    --CONSTRAINT fk_found_cacheID FOREIGN KEY (GeocacheID) REFERENCES CW1.Geocache(GeocacheID)
 )
