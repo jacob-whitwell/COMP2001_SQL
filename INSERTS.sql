@@ -33,10 +33,12 @@ VALUES ('Jacob'),
 SELECT * FROM CW1.PlayerGeocache
 DELETE FROM CW1.Playergeocache 
 
-
+UPDATE CW1.Geocache
+SET TimesFound = 0
+SELECT * FROM CW1.Geocache
 
 INSERT INTO CW1.PlayerGeocache(PlayerID, GeoCacheID)
-VALUES ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 6), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 21)),
+VALUES ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 9), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 21)),
 ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 2), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 21)),
 ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 3), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 21)),
 ((SELECT CW1.Player.PlayerID FROM CW1.Player WHERE CW1.Player.PlayerID = 4), (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 21)),
@@ -63,8 +65,6 @@ INSERT INTO CW1.Treasure(GeocacheTreasureItem, GeocacheID)
 VALUES ('Bolt', (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 4)),
 ('Book', (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 5)),
 ('Army man', (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 6))
-
-
 
 INSERT INTO CW1.Hint (GeocacheHint, GeocacheID)
 VALUES ('Look in the tree', (SELECT CW1.Geocache.GeocacheID FROM CW1.Geocache WHERE CW1.Geocache.GeocacheID = 4)),

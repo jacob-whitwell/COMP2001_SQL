@@ -16,7 +16,7 @@ BEGIN
     WHERE i.GeocacheID = inserted.GeocacheID
 
     UPDATE CW1.Geocache
-    SET TimesFound += @Count
+    SET TimesFound += 1
     WHERE CW1.Geocache.GeocacheID = @CacheID
 
     print 'CacheID: '

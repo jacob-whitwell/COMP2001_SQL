@@ -8,9 +8,8 @@ CREATE TABLE CW1.Geocache (
     GeocacheDescription VARCHAR(255) NOT NULL,
     GeocacheStatus VARCHAR(15) NOT NULL,
     GeocacheType VARCHAR(30) NOT NULL,
-    TimesFound INT DEFAULT 0,
+    TimesFound INT DEFAULT 0 NOT NULL,
 
-    
     CONSTRAINT pk_cache PRIMARY KEY (GeocacheID),
 )
 
@@ -48,16 +47,3 @@ CREATE TABLE CW1.PlayerGeocache (
     --CONSTRAINT fk_found_playerID FOREIGN KEY (PlayerID) REFERENCES CW1.Player(PlayerID),
     --CONSTRAINT fk_found_cacheID FOREIGN KEY (GeocacheID) REFERENCES CW1.Geocache(GeocacheID)
 )
-
-CREATE TABLE CW1.TimesFound (
-    TimesFoundID INT IDENTITY(1, 1) NOT NULL,
-    GeocacheID INT NOT NULL,
-    TimesFound INT NOT NULL,
-
-    CONSTRAINT pk_times_found_ID PRIMARY KEY (TimesFoundID),
-    CONSTRAINT fk_times_found_geocacheID FOREIGN KEY (GeocacheID) REFERENCES CW1.Geocache(GeocacheID)
-)
-
-
-ALTER TABLE CW1.Geocache
-ADD CONSTRAINT fk_cache_times_found FOREIGN KEY (TimesFound) REFERENCES CW1.TimesFound
