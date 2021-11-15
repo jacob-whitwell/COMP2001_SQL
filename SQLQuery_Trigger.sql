@@ -5,23 +5,30 @@ BEGIN
     DECLARE @CacheID int;
     DECLARE @Count int; 
 
-
 -- ITS GETTING THE LAST ID, SO WE NEED TO MAKE A PROPER WHERE CLAUSE
     
     SELECT @CacheID = i.GeocacheID
     FROM CW1.PlayerGeocache as i, inserted
     WHERE i.GeocacheID = inserted.GeocacheID
 
-
-    SELECT @Count = COUNT(i.GeocacheID)
+    SELECT @Count = COUNT(inserted.GeocacheID)
     FROM CW1.PlayerGeocache as i, inserted
     WHERE i.GeocacheID = inserted.GeocacheID
+
 
     print 'CacheID: '
     print @CacheID
 
     print'Found: '
     print @Count    
+
+    IF @Count >= 20
+    BEGIN
+        UPDATE CW1.Geocache
+        SET GeocacheStatus = 'Test'
+        FROM CW1.PlayerGeocache as i, inserted
+        WHERE CW1.Geocache.GeocacheID = @CacheID
+    END
 END
 GO
 
