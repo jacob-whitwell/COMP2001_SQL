@@ -15,6 +15,9 @@ BEGIN
     FROM CW1.PlayerGeocache as i, inserted
     WHERE i.GeocacheID = inserted.GeocacheID
 
+    UPDATE CW1.Geocache
+    SET TimesFound += @Count
+    WHERE CW1.Geocache.GeocacheID = @CacheID
 
     print 'CacheID: '
     print @CacheID
@@ -25,8 +28,7 @@ BEGIN
     IF @Count >= 20
     BEGIN
         UPDATE CW1.Geocache
-        SET GeocacheStatus = 'Test'
-        FROM CW1.PlayerGeocache as i, inserted
+        SET GeocacheStatus = 'Maintenance'
         WHERE CW1.Geocache.GeocacheID = @CacheID
     END
 END

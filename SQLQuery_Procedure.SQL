@@ -12,7 +12,6 @@ CREATE PROCEDURE CW1.CreateGeocache(
 AS
 BEGIN
     BEGIN TRANSACTION
-        PRINT 'Test'
         BEGIN TRY
             DECLARE @Error NVARCHAR(Max);            
             DECLARE @LocationTaken INT;
@@ -54,3 +53,4 @@ SELECT * FROM CW1.PlayerGeocache
 SELECT * FROM CW1.Hint
 
 
+SELECT * FROM CW1.ShowHints
