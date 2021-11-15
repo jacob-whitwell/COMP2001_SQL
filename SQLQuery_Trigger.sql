@@ -13,9 +13,9 @@ BEGIN
     WHERE i.GeocacheID = inserted.GeocacheID
 
 
-    SELECT @Count = COUNT(GeocacheID)
-    FROM CW1.PlayerGeocache as inserted
-    WHERE inserted.GeocacheID = GeocacheID
+    SELECT @Count = COUNT(i.GeocacheID)
+    FROM CW1.PlayerGeocache as i, inserted
+    WHERE i.GeocacheID = inserted.GeocacheID
 
     print 'CacheID: '
     print @CacheID
